@@ -13,42 +13,34 @@ const result = document.createElement("span");
 const youScore = document.querySelector("#playerScore");
 const pcScore = document.querySelector("#pcScore");
 
-function getComputerChoice() {
-  questionMarkPC.textContent = "?";
-  let randomNumber = Math.floor(Math.random() * 3);
+// Initialize scores
+let playerScore = 0;
+let computerScore = 0;
 
-  switch (randomNumber) {
-    case 0:
-      questionMarkPC.appendChild(rockIcon.cloneNode(true));
-      return "rock";
-    case 1:
-      questionMarkPC.appendChild(paperIcon.cloneNode(true));
-      return "paper";
-    case 2:
-      questionMarkPC.appendChild(scissorsIcon.cloneNode(true));
-      return "scissors";
-  }
-}
+// Display initial question mark on both PC and player sections
+questionMarkPC.textContent = "?";
+questionMarkPlayer.textContent = "?";
 
 // Add click events to all game icons for the player
 function playerMove() {
   let playerChoice = "";
-  questionMarkPlayer.textContent = "?";
-
   return new Promise((resolve) => {
     rockIcon.addEventListener("click", () => {
+      questionMarkPlayer.innerHTML = ""; // Clear previous content
       questionMarkPlayer.appendChild(rockIcon.cloneNode(true));
       playerChoice = "rock";
       resolve(playerChoice);
     });
 
     paperIcon.addEventListener("click", () => {
+      questionMarkPlayer.innerHTML = ""; // Clear previous content
       questionMarkPlayer.appendChild(paperIcon.cloneNode(true));
       playerChoice = "paper";
       resolve(playerChoice);
     });
 
     scissorsIcon.addEventListener("click", () => {
+      questionMarkPlayer.innerHTML = ""; // Clear previous content
       questionMarkPlayer.appendChild(scissorsIcon.cloneNode(true));
       playerChoice = "scissors";
       resolve(playerChoice);
@@ -58,12 +50,10 @@ function playerMove() {
 
 // 1 round of game
 function playRound(playerChoice, computerChoice) {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  // Display player's choice
+  // Display player's and computer's choices
   questionMarkPlayer.appendChild(document.getElementById(playerChoice).cloneNode(true));
   questionMarkPC.appendChild(document.getElementById(computerChoice).cloneNode(true));
+
   const resultElement = document.createElement("span");
 
   if (playerChoice === computerChoice) {
@@ -71,21 +61,20 @@ function playRound(playerChoice, computerChoice) {
   } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
     resultElement.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
     playerScore++;
-    youScore.appendChild(playerScore);
+    youScore.textContent = playerScore; // Update player score display
   } else {
     resultElement.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
     computerScore++;
+    pcScore.textContent = computerScore; // Update computer score display
   }
+  mainResult.innerHTML = ""; // Clear previous content
   mainResult.appendChild(resultElement);
 }
 
 // game
 async function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
   for (let i = 1; i <= 5; i++) {
-    await playerMove(); // Player picks their move
+    const playerChoice = await playerMove(); // Player picks their move
     const computerChoice = getComputerChoice(); // Computer picks its move
 
     playRound(playerChoice, computerChoice);
