@@ -81,7 +81,7 @@ function playRound(playerChoice, computerChoice) {
     computerScore++;
     pcScore.textContent = computerScore; // Update computer score display
   }
-  mainResult.innerHTML = ""; // Clear previous content
+  mainResult.innerHTML = "Result:"; // Clear previous content
   mainResult.appendChild(resultElement);
 }
 
