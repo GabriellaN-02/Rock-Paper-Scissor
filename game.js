@@ -30,10 +30,26 @@ function getComputerChoice() {
 // Add click events to all game icons for the player
 
 function playerMove() {
+  let playerChoice = "";
   questionMarkPlayer.innerHTML = "";
-  rockIcon.addEventListener("click", () => questionMarkPlayer.appendChild(rockIcon.cloneNode(true)));
-  paperIcon.addEventListener("click", () => questionMarkPlayer.appendChild(paperIcon.cloneNode(true)));
-  scissorsIcon.addEventListener("click", () => questionMarkPlayer.appendChild(scissorsIcon.cloneNode(true)));
+
+  rockIcon.addEventListener("click", () => {
+    questionMarkPlayer.appendChild(rockIcon.cloneNode(true));
+    playerChoice = "rock";
+    console.log(playerChoice);
+  });
+
+  paperIcon.addEventListener("click", () => {
+    questionMarkPlayer.appendChild(paperIcon.cloneNode(true));
+    playerChoice = "paper";
+    console.log(playerChoice);
+  });
+
+  scissorsIcon.addEventListener("click", () => {
+    questionMarkPlayer.appendChild(scissorsIcon.cloneNode(true));
+    playerChoice = "scissors";
+    console.log(playerChoice);
+  });
 }
 
 playerMove();
