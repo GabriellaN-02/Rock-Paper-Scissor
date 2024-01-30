@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script src="https://kit.fontawesome.com/bafe0bdc31.js" crossorigin="anonymous"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Honk&display=swap");
@@ -15,30 +15,33 @@
         font-family: "Honk", system-ui;
       }
     </style>
-    <!-- <script src="game.js"></script> -->
+    <script src="game.js" defer></script>
   </head>
   <body class="bg-pink-900 py-6 container mx-auto">
     <header class="text-center">
       <h1 class="mb-5 text-4xl lg:text-5xl 2xl:text-6xl">Rock Paper Scissors</h1>
-      <span class="bg-yellow-300 py-2 px-4">Result:</span>
+      <span id="mainResult" class="bg-yellow-300 py-2 px-4">Result:</span>
     </header>
 
     <main class="lg:flex items-center justify-around gap-10">
+      <!-- Player -->
       <div class="p-3 flex-1">
         <h1 class="text-center text-4xl lg:text-5xl 2xl:text-6xl">You</h1>
-        <div class="score bg-yellow-300 py-2 px-3">Score:</div>
-        <div class="move h-28 bg-gray-800 flex items-center justify-center">
-          <div class="bg-yellow-300 text-black w-fit px-5 py-3 text-5xl rounded-full">
+        <div class="bg-yellow-300 py-2 px-3">Score:</div>
+        <div class="h-28 bg-gray-800 flex items-center justify-center">
+          <div id="questionMarkPlayer" class="text-5xl bg-yellow-300 text-black w-fit px-5 py-3 rounded-full">
             <i class="fa-solid fa-question"></i>
           </div>
         </div>
       </div>
       <h1 class="text-4xl lg:text-5xl 2xl:text-6xl text-center bg-yellow-200 rounded-full w-fit p-4 mx-auto">VS</h1>
+
+      <!-- Computer -->
       <div class="p-3 flex-1">
         <h1 class="text-center text-4xl lg:text-5xl 2xl:text-6xl">Computer</h1>
-        <div class="score bg-yellow-300 py-2 px-3">Score:</div>
-        <div class="move h-28 bg-gray-800 flex items-center justify-center">
-          <div class="bg-yellow-300 text-black w-fit px-5 py-3 text-5xl rounded-full">
+        <div class="bg-yellow-300 py-2 px-3">Score:</div>
+        <div class="h-28 bg-gray-800 flex items-center justify-center">
+          <div id="questionMarkPC" class="text-5xl bg-yellow-300 text-black w-fit px-5 py-3 rounded-full">
             <i class="fa-solid fa-question"></i>
           </div>
         </div>
@@ -47,10 +50,10 @@
 
     <section>
       <h1 class="text-4xl lg:text-5xl 2xl:text-6xl text-center">Choose your Move!</h1>
-      <div class="mt-5 lg:mt-8 mx-auto flex justify-around container max-w-xl text-yellow-300 text-4xl lg:text-6xl">
-        <i class="fa-solid fa-hand-back-fist hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
-        <i class="fa-solid fa-hand hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
-        <i class="fa-solid fa-hand-peace hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
+      <div id="gameIcons" class="mt-5 lg:mt-8 mx-auto flex justify-around container max-w-xl text-yellow-300 text-4xl lg:text-6xl">
+        <i id="rock" class="fa-solid fa-hand-back-fist hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
+        <i id="paper" class="fa-solid fa-hand hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
+        <i id="scissors" class="fa-solid fa-hand-peace hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
       </div>
     </section>
 

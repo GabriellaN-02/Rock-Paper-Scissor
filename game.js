@@ -1,64 +1,39 @@
+//icon containers for both PC and player
+const questionMarkPC = document.querySelector("#questionMarkPC");
+const questionMarkPlayer = document.querySelector("#questionMarkPlayer");
+
+// icons
+const rockIcon = document.querySelector("#rock");
+const paperIcon = document.querySelector("#paper");
+const scissorsIcon = document.querySelector("#scissors");
+const gameIcons = document.querySelectorAll("#gameIcons i");
+
+const mainResult = document.querySelector("#mainResult");
+
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
+  questionMarkPC.innerHTML = "";
 
   switch (randomNumber) {
     case 0:
+      questionMarkPC.appendChild(rockIcon.cloneNode(true));
       return "rock";
     case 1:
+      questionMarkPC.appendChild(paperIcon.cloneNode(true));
       return "paper";
     case 2:
+      questionMarkPC.appendChild(scissorsIcon.cloneNode(true));
       return "scissors";
   }
 }
 
-function playRound(playerSelection, computerSelection) {
-  const lowercasePlayer = playerSelection.toLowerCase();
-  const playerCapitalized = lowercasePlayer.charAt(0).toUpperCase() + lowercasePlayer.slice(1);
-  const pcCapitalized = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+// Add click events to all game icons for the player
 
-  // Tie
-  if (lowercasePlayer === computerSelection) {
-    return "It's a tie";
-  }
-
-  // Player wins
-  if ((lowercasePlayer === "rock" && computerSelection === "scissors") || (lowercasePlayer === "paper" && computerSelection === "rock") || (lowercasePlayer === "scissors" && computerSelection === "paper")) {
-    return "You win! " + playerCapitalized + " beats " + pcCapitalized;
-  }
-
-  // Computer wins
-  else {
-    return "You lose! " + pcCapitalized + " beats " + playerCapitalized;
-  }
+function playerMove() {
+  questionMarkPlayer.innerHTML = "";
+  rockIcon.addEventListener("click", () => questionMarkPlayer.appendChild(rockIcon.cloneNode(true)));
+  paperIcon.addEventListener("click", () => questionMarkPlayer.appendChild(paperIcon.cloneNode(true)));
+  scissorsIcon.addEventListener("click", () => questionMarkPlayer.appendChild(scissorsIcon.cloneNode(true)));
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  //best of 5 games
-  for (let i = 1; i <= 5; i++) {
-    const playerSelection = prompt("Enter your choice:");
-    const computerSelection = getComputerChoice();
-
-    console.log(playRound(playerSelection, computerSelection));
-
-    // Update scores based on the result of each round
-    if (playRound(playerSelection, computerSelection).includes("You win")) {
-      playerScore++;
-    } else if (playRound(playerSelection, computerSelection).includes("You lose")) {
-      computerScore++;
-    }
-  }
-
-  // Determine the winner after five rounds
-  if (playerScore > computerScore) {
-    return "Congratulations! You Win!";
-  } else if (computerScore > playerScore) {
-    return "Sorry. You lose";
-  } else {
-    return "It's a tie.";
-  }
-}
-
-console.log(game());
+playerMove();
