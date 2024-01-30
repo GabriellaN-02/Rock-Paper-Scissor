@@ -6,13 +6,15 @@ const questionMarkPlayer = document.querySelector("#questionMarkPlayer");
 const rockIcon = document.querySelector("#rock");
 const paperIcon = document.querySelector("#paper");
 const scissorsIcon = document.querySelector("#scissors");
-const gameIcons = document.querySelectorAll("#gameIcons i");
+// const gameIcons = document.querySelectorAll("#gameIcons i");
 
 const mainResult = document.querySelector("#mainResult");
+const youScore = document.querySelector("#playerScore");
+const pcScore = document.querySelector("#pcScore");
 
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
-  //questionMarkPC.innerHTML = "";
+  questionMarkPC.innerHTML = "";
 
   switch (randomNumber) {
     case 0:
@@ -30,44 +32,61 @@ function getComputerChoice() {
 // Add click events to all game icons for the player
 function playerMove() {
   let playerChoice = "";
-  //questionMarkPlayer.innerHTML = "";
+  questionMarkPlayer.innerHTML = "";
 
   rockIcon.addEventListener("click", () => {
     questionMarkPlayer.appendChild(rockIcon.cloneNode(true));
     playerChoice = "rock";
-    return "rock";
   });
 
   paperIcon.addEventListener("click", () => {
     questionMarkPlayer.appendChild(paperIcon.cloneNode(true));
     playerChoice = "paper";
-    return "paper";
   });
 
   scissorsIcon.addEventListener("click", () => {
     questionMarkPlayer.appendChild(scissorsIcon.cloneNode(true));
     playerChoice = "scissors";
-    return "scissors";
+
+    return playerChoice;
   });
 }
 
 // 1 round of game
 function playRound(playerChoice, computerChoice) {
-  //Tie
+  let result = "";
+  // Tie
   if (playerChoice === computerChoice) {
-    return (mainResult.innerText += "It's a Tie");
+    result = "It's a tie";
   }
-
-  //Player wins
-  if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
-    return `You win ${playerChoice} beats ${computerChoice}`;
+  // Player wins
+  else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
+    result += `You win ${playerChoice} beats ${computerChoice}`;
   }
-
-  //Computer wins
+  // Computer wins
   else {
-    return `You lose ${computerChoice} beats ${playerChoice}`;
+    result += `You lose ${computerChoice} beats ${playerChoice}`;
   }
+  mainResult.innerText = result;
 }
 
-const playerChoice = playerMove();
-const computerChoice = getComputerChoice();
+//5 games
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  for (let i = 1; i <= 5; i++) {
+    const playerChoice = playerMove();
+    const computerChoice = getComputerChoice();
+
+    playRound(playerChoice, computerChoice);
+
+    if (playRound(playerChoice, computerChoice).includes("You win")) {
+      playerScore++;
+      youScore.innerText = playerScore;
+    } else if (playRound(playerChoice, computerChoice).includes("You lose")) {
+      computerScore++;
+      pcScore.innerText = computerScore;
+    }
+  }
+}
