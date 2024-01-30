@@ -21,27 +21,41 @@ let computerScore = 0;
 questionMarkPC.textContent = "?";
 questionMarkPlayer.textContent = "?";
 
+// Function to get computer's choice
+function getComputerChoice() {
+  let randomNumber = Math.floor(Math.random() * 3);
+
+  switch (randomNumber) {
+    case 0:
+      questionMarkPC.textContent = "";
+      return "rock";
+    case 1:
+      questionMarkPC.textContent = "";
+      return "paper";
+    case 2:
+      questionMarkPC.textContent = "";
+      return "scissors";
+  }
+}
+
 // Add click events to all game icons for the player
 function playerMove() {
   let playerChoice = "";
   return new Promise((resolve) => {
     rockIcon.addEventListener("click", () => {
-      questionMarkPlayer.innerHTML = ""; // Clear previous content
-      questionMarkPlayer.appendChild(rockIcon.cloneNode(true));
+      questionMarkPlayer.textContent = "";
       playerChoice = "rock";
       resolve(playerChoice);
     });
 
     paperIcon.addEventListener("click", () => {
-      questionMarkPlayer.innerHTML = ""; // Clear previous content
-      questionMarkPlayer.appendChild(paperIcon.cloneNode(true));
+      questionMarkPlayer.textContent = "";
       playerChoice = "paper";
       resolve(playerChoice);
     });
 
     scissorsIcon.addEventListener("click", () => {
-      questionMarkPlayer.innerHTML = ""; // Clear previous content
-      questionMarkPlayer.appendChild(scissorsIcon.cloneNode(true));
+      questionMarkPlayer.textContent = "";
       playerChoice = "scissors";
       resolve(playerChoice);
     });
