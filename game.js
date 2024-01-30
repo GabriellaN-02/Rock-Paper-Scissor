@@ -12,7 +12,7 @@ const mainResult = document.querySelector("#mainResult");
 
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
-  questionMarkPC.innerHTML = "";
+  //questionMarkPC.innerHTML = "";
 
   switch (randomNumber) {
     case 0:
@@ -28,28 +28,46 @@ function getComputerChoice() {
 }
 
 // Add click events to all game icons for the player
-
 function playerMove() {
   let playerChoice = "";
-  questionMarkPlayer.innerHTML = "";
+  //questionMarkPlayer.innerHTML = "";
 
   rockIcon.addEventListener("click", () => {
     questionMarkPlayer.appendChild(rockIcon.cloneNode(true));
     playerChoice = "rock";
-    console.log(playerChoice);
+    return "rock";
   });
 
   paperIcon.addEventListener("click", () => {
     questionMarkPlayer.appendChild(paperIcon.cloneNode(true));
     playerChoice = "paper";
-    console.log(playerChoice);
+    return "paper";
   });
 
   scissorsIcon.addEventListener("click", () => {
     questionMarkPlayer.appendChild(scissorsIcon.cloneNode(true));
     playerChoice = "scissors";
-    console.log(playerChoice);
+    return "scissors";
   });
 }
 
-playerMove();
+// 1 round of game
+function playRound(playerChoice, computerChoice) {
+  //Tie
+  if (playerChoice === computerChoice) {
+    return (mainResult.innerText += "It's a Tie");
+  }
+
+  //Player wins
+  if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
+    return `You win ${playerChoice} beats ${computerChoice}`;
+  }
+
+  //Computer wins
+  else {
+    return `You lose ${computerChoice} beats ${playerChoice}`;
+  }
+}
+
+const playerChoice = playerMove();
+const computerChoice = getComputerChoice();
