@@ -126,7 +126,7 @@ async function game() {
   mainResult.innerHTML = "";
   mainResult.appendChild(result);
 
-  await new Promise((resolve) => setTimeout(resolve, 1700));
+  await new Promise((resolve) => setTimeout(resolve, 2500));
   const playAgainResponse = await playAgain();
 
   if (playAgainResponse) {
