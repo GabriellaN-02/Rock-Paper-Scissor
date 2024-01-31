@@ -98,6 +98,7 @@ async function playAgain() {
   });
 }
 
+// best of 5 games
 async function game() {
   for (let i = 1; i <= 5; i++) {
     const playerChoice = await playerMove();
@@ -140,5 +141,14 @@ async function game() {
     alert("Thank you for playing!");
   }
 }
+// start game modal
+function startGame() {
+  const rulesSection = document.getElementById("rules");
+  const body = document.getElementById("body");
 
-game();
+  rulesSection.classList.add("hidden");
+
+  body.classList.remove("blur");
+
+  game();
+}
