@@ -4,7 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <script src="game.js"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://kit.fontawesome.com/bafe0bdc31.js" crossorigin="anonymous"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Honk&display=swap");
+      * {
+        font-family: "Archivo Black", sans-serif;
+      }
+      h1 {
+        font-family: "Honk", system-ui;
+      }
+    </style>
+    <script src="game.js" defer></script>
   </head>
-  <body></body>
+  <body class="bg-pink-900">
+    <section id="rules" class="bg-white text-center rounded p-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[60%] max-w-md">
+      <h1 class="text-4xl mb-5">Welcome!</h1>
+      <p>This is a best of 5 game of the classic rock paper and scissors. Whoever has the highest score winns the game.</p>
+      <p>Good luck and have fun!</p>
+      <button onclick="startGame()" class="mt-5 bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-700">Let's play</button>
+    </section>
+
+    <div id="body" class="py-6 container mx-auto filter blur">
+      <header class="text-center">
+        <h1 class="mb-5 text-4xl lg:text-5xl 2xl:text-6xl">Rock Paper Scissors</h1>
+        <span id="mainResult" class="bg-yellow-300 py-2 px-4">Result:</span>
+      </header>
+      <main class="lg:flex items-center justify-around gap-10">
+        <!-- Player -->
+        <div class="p-3 flex-1">
+          <h1 class="text-center text-4xl lg:text-5xl 2xl:text-6xl">You</h1>
+          <div id="playerScore" class="bg-yellow-300 py-2 px-3">Score:</div>
+          <div class="h-28 bg-gray-800 flex items-center justify-center">
+            <div id="questionMarkPlayer" class="text-5xl bg-yellow-300 text-black w-fit px-5 py-3 rounded-full"></div>
+          </div>
+        </div>
+        <h1 class="text-4xl lg:text-5xl 2xl:text-6xl text-center bg-yellow-200 rounded-full w-fit p-4 mx-auto">VS</h1>
+
+        <!-- Computer -->
+        <div class="p-3 flex-1">
+          <h1 class="text-center text-4xl lg:text-5xl 2xl:text-6xl">Computer</h1>
+          <div id="pcScore" class="bg-yellow-300 py-2 px-3">Score:</div>
+          <div class="h-28 bg-gray-800 flex items-center justify-center">
+            <div id="questionMarkPC" class="text-5xl bg-yellow-300 text-black w-fit px-5 py-3 rounded-full"></div>
+          </div>
+        </div>
+      </main>
+
+      <section>
+        <h1 class="text-4xl lg:text-5xl 2xl:text-6xl text-center">Choose your Move!</h1>
+        <div id="gameIcons" class="mt-5 lg:mt-8 mx-auto flex justify-around container max-w-xl text-yellow-300 text-4xl lg:text-6xl">
+          <i id="rock" class="fa-solid fa-hand-back-fist hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
+          <i id="paper" class="fa-solid fa-hand hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
+          <i id="scissors" class="fa-solid fa-hand-peace hover:scale-125 hover:cursor-pointer duration-75 ease-in"></i>
+        </div>
+      </section>
+
+      <footer class="mx-auto bg-yellow-300 p-2 w-fit mt-10 text-xs rounded-xl">
+        <p>Built by: <a href="https://github.com/GabriellaN-02" target="_blank" class="underline">GabriellaN-02</a></p>
+      </footer>
+    </div>
+  </body>
 </html>
+
+<!--  background-color: #1a120b; -->
