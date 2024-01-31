@@ -43,7 +43,6 @@ function getComputerChoice() {
 
 // Add click events to all game icons for the player
 function playerMove() {
-  // let playerChoice = "";
   return new Promise((resolve) => {
     rockIcon.addEventListener("click", () => {
       questionMarkPlayer.textContent = "";
@@ -91,11 +90,18 @@ function playRound(playerChoice, computerChoice) {
   mainResult.appendChild(resultElement);
 }
 
-// game
+// function for playing the game again
+async function playAgain() {
+  return new Promise((resolve) => {
+    const playAgain = confirm("Do you want to play again?");
+    resolve(playAgain);
+  });
+}
+
 async function game() {
   for (let i = 1; i <= 5; i++) {
-    const playerChoice = await playerMove(); // Player picks their move
-    const computerChoice = getComputerChoice(); // Computer picks its move
+    const playerChoice = await playerMove();
+    const computerChoice = getComputerChoice();
 
     playRound(playerChoice, computerChoice);
 
@@ -118,7 +124,21 @@ async function game() {
   // Clear previous content in mainResult and append the final result
   mainResult.innerHTML = "";
   mainResult.appendChild(result);
+
+  // Ask the player if they want to play again
+  const playAgainResponse = await playAgain();
+
+  if (playAgainResponse) {
+    // Reset scores and start a new game
+    playerScore = 0;
+    computerScore = 0;
+    youScoreChild.textContent = playerScore;
+    pcScoreChild.textContent = computerScore;
+    mainResult.textContent = "Result:";
+    game();
+  } else {
+    alert("Thank you for playing!");
+  }
 }
 
-// Start the game
 game();
