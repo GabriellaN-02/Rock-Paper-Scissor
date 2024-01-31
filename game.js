@@ -72,16 +72,19 @@ function playRound(playerChoice, computerChoice) {
 
   if (playerChoice === computerChoice) {
     resultElement.textContent = "It's a tie";
+    mainResult.style.color = "black";
   } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
     resultElement.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
     playerScore++;
-    youScore.textContent = playerScore; // Update player score display
+    youScore.textContent = playerScore;
+    mainResult.style.color = "green";
   } else {
     resultElement.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
     computerScore++;
-    pcScore.textContent = computerScore; // Update computer score display
+    pcScore.textContent = computerScore;
+    mainResult.style.color = "red";
   }
-  mainResult.innerHTML = "Result:"; // Clear previous content
+  mainResult.innerHTML = "Result:";
   mainResult.appendChild(resultElement);
 }
 
