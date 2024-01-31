@@ -9,6 +9,7 @@ const scissorsIcon = document.querySelector("#scissors");
 
 const mainResult = document.querySelector("#mainResult");
 const result = document.createElement("span");
+const resultElement = document.createElement("span");
 
 const youScore = document.querySelector("#playerScore");
 const pcScore = document.querySelector("#pcScore");
@@ -40,7 +41,7 @@ function getComputerChoice() {
 
 // Add click events to all game icons for the player
 function playerMove() {
-  let playerChoice = "";
+  // let playerChoice = "";
   return new Promise((resolve) => {
     rockIcon.addEventListener("click", () => {
       questionMarkPlayer.textContent = "";
@@ -67,8 +68,6 @@ function playRound(playerChoice, computerChoice) {
   // Display player's and computer's choices
   questionMarkPlayer.appendChild(document.getElementById(playerChoice).cloneNode(true));
   questionMarkPC.appendChild(document.getElementById(computerChoice).cloneNode(true));
-
-  const resultElement = document.createElement("span");
 
   if (playerChoice === computerChoice) {
     resultElement.textContent = "It's a tie";
@@ -103,10 +102,13 @@ async function game() {
   // Determine the winner after 5 games
   if (playerScore > computerScore) {
     result.textContent = "Congratulations, you win! 🎊";
+    Object.assign(result.style, { fontSize: "x-large", color: "green" });
   } else if (computerScore > playerScore) {
     result.textContent = "Sorry, you lose 💔";
-  } else {
+    Object.assign(result.style, { fontSize: "x-large", color: "red" });
+  } else if (computerScore === playerScore) {
     result.textContent = "It's a tie";
+    result.style.fontSize = "x-large";
   }
 
   // Clear previous content in mainResult and append the final result
