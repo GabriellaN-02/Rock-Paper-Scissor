@@ -126,7 +126,7 @@ async function game() {
   mainResult.innerHTML = "";
   mainResult.appendChild(result);
 
-  // Ask the player if they want to play again
+  await new Promise((resolve) => setTimeout(resolve, 1700));
   const playAgainResponse = await playAgain();
 
   if (playAgainResponse) {
