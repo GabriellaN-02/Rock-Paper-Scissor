@@ -11,8 +11,10 @@ const mainResult = document.querySelector("#mainResult");
 const result = document.createElement("span");
 const resultElement = document.createElement("span");
 
-const youScore = document.querySelector("#playerScore");
-const pcScore = document.querySelector("#pcScore");
+const youScoreDiv = document.querySelector("#playerScore");
+const pcScoreDiv = document.querySelector("#pcScore");
+const youScoreChild = document.createElement("span");
+const pcScoreChild = document.createElement("span");
 
 // Initialize scores
 let playerScore = 0;
@@ -75,12 +77,14 @@ function playRound(playerChoice, computerChoice) {
   } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
     resultElement.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
     playerScore++;
-    youScore.textContent = playerScore;
+    youScoreChild.textContent = playerScore;
+    youScoreDiv.appendChild(youScoreChild);
     mainResult.style.color = "green";
   } else {
     resultElement.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
     computerScore++;
-    pcScore.textContent = computerScore;
+    pcScoreChild.textContent = computerScore;
+    pcScoreDiv.appendChild(pcScoreChild);
     mainResult.style.color = "red";
   }
   mainResult.innerHTML = "Result:";
