@@ -18,7 +18,7 @@
     </style>
     <script src="game.js" defer></script>
   </head>
-  <body class="bg-pink-900">
+  <body class="bg-pink-900 py-6 max-h-screen">
     <section id="rules" class="bg-white text-center rounded p-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[60%] max-w-md">
       <h1 class="text-4xl mb-5">Welcome!</h1>
       <p>This is a best of 5 game of the classic rock paper and scissors. Whoever has the highest score wins the game.</p>
@@ -26,11 +26,12 @@
       <button onclick="startGame()" class="mt-5 bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-700">Let's play</button>
     </section>
 
-    <div id="body" class="py-6 container mx-auto filter blur">
+    <div id="body" class="h-[95vh] container mx-auto w-[85%] max-w-5xl filter blur">
       <header class="text-center">
         <h1 class="mb-5 text-4xl lg:text-5xl 2xl:text-6xl">Rock Paper Scissors</h1>
         <span id="mainResult" class="bg-yellow-300 py-2 px-4">Result:</span>
       </header>
+
       <main class="lg:flex items-center justify-around gap-10">
         <!-- Player -->
         <div class="p-3 flex-1">
@@ -67,5 +68,3 @@
     </div>
   </body>
 </html>
-
-<!--  background-color: #1a120b; -->
